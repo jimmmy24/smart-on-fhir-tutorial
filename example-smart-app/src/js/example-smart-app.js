@@ -48,11 +48,11 @@
           var ldl = byCodes('2089-1');
 
           var p = defaultPatient();
-          p.birthdate = patient.birthDate;
+          p.birthdate = dobStr;
           p.gender = gender;
           p.fname = fname;
           p.lname = lname;
-          p.height = getQuantityValueAndUnit(height[0]);
+          p.age = parseInt(calculateAge(dob));
 
           if(typeof height[0] != 'undefined' && typeof height[0].valueQuantity.value != 'undefined' && typeof height[0].valueQuantity.unit != 'undefined') {
             p.height = height[0].valueQuantity.value + ' ' + height[0].valueQuantity.unit;
@@ -73,10 +73,6 @@
           if(typeof ldl[0] != 'undefined' && typeof ldl[0].valueQuantity.value != 'undefined' && typeof ldl[0].valueQuantity.unit != 'undefined') {
             p.ldl = ldl[0].valueQuantity.value + ' ' + ldl[0].valueQuantity.unit;
           }
-
-          /*p.hdl = getQuantityValueAndUnit(hdl[0]);*/
-          /*p.ldl = getQuantityValueAndUnit(ldl[0]);*/
-
           ret.resolve(p);
         });
       } else {
